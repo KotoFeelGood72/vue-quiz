@@ -1,7 +1,7 @@
 <template>
   <div class="quiz_steps__formsItem" style="display: block">
     <div class="quiz_steps__formsItem__head">
-      <img src="crest-icon.webp" alt="" />
+      <!-- <img src="crest-icon.webp" alt="" /> -->
       <p>GET A PRICE &amp; BOOK</p>
     </div>
     <div class="quiz_tabs">
@@ -24,32 +24,11 @@
       <div class="quiz_inputs__location">
         <div class="quiz_inputs">
           <p>Where from?</p>
-          <div class="quiz_input">
-            <input
-              type="text"
-              id="pickup-location"
-              v-model="pickup"
-              placeholder="Enter pick-up location"
-              class="pac-target-input"
-              autocomplete="off"
-            />
-            <img src="gis--location.png" alt="" class="location-img" />
-          </div>
+          <Input v-model="pickup" placeholder="" />
         </div>
         <div class="quiz_inputs" style="display: block">
           <p>Where to</p>
-          <div class="quiz_input">
-            <input
-              type="text"
-              id="dropoff-location"
-              v-model="dropoff"
-              placeholder="Enter destination"
-              class="pac-target-input"
-              autocomplete="off"
-            />
-            <img src="streamline--location-target-1.png" alt="" class="location-img" />
-            <div class="location-img-line"></div>
-          </div>
+          <Input v-model="dropoff" placeholder="" />
         </div>
         <div class="quiz_inputs" v-show="tripType === 'byHour'">
           <p>Hire duration?</p>
@@ -66,11 +45,7 @@
             </p>
           </div>
         </div>
-        <div class="quiz_btn" @click="submitLocations">
-          <div class="square_btn"></div>
-          <p>Get My Prices</p>
-          <img src="arrow-white-right.svg" alt="" />
-        </div>
+        <Btn name="Get My Prices" @click="submitLocations" />
       </div>
     </div>
   </div>
@@ -78,11 +53,16 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useQuizStore } from "@/stores/useQuizStore";
+import Input from "../ui/Input.vue";
+import Btn from "../ui/Btn.vue";
 
 const tripType = ref<"oneWay" | "byHour">("oneWay");
 const pickup = ref("");
 const dropoff = ref("");
 const hireDuration = ref<number | null>(null);
+
+const { nextStep } = useQuizStore();
 
 function submitLocations() {
   if (!pickup.value || !dropoff.value) {
@@ -93,19 +73,14 @@ function submitLocations() {
     alert("Please select hire duration.");
     return;
   }
+
   console.log({
     tripType: tripType.value,
     pickup: pickup.value,
     dropoff: dropoff.value,
     hireDuration: hireDuration.value,
   });
-  // emit or call parent step change logic here
+
+  nextStep(); // Переключение на следующий шаг
 }
 </script>
-
-<style scoped lang="scss">
-.quiz_tabs__btn.active {
-  background: #000;
-  color: #fff;
-}
-</style>

@@ -38,7 +38,7 @@
         <div class="big-price">£{{ price.total }}</div>
       </div>
       <div class="payment_method">
-        <img src="secured-by-stripe.jpg" alt="Stripe Secure" />
+        <!-- <img src="secured-by-stripe.jpg" alt="Stripe Secure" /> -->
       </div>
       <div class="payment_action">
         <div class="quiz_inputs">
@@ -64,17 +64,17 @@
       <div class="quiz_btn" id="pay-button" @click="submitPayment">
         <div class="square_btn"></div>
         <p>Confirm Your Booking</p>
-        <img src="arrow-white-right.svg" alt="" />
+        <!-- <img src="arrow-white-right.svg" alt="" /> -->
       </div>
       <div class="back_steps back_steps_small">
         <div class="back_quiz_btn" @click="emit('prev')">
           <div class="square_btn"></div>
-          <img src="arrow-form-back.svg" alt="" />
+          <!-- <img src="arrow-form-back.svg" alt="" /> -->
           <p>Back to cars</p>
         </div>
         <div class="back_help">
           Need more help? Call Us
-          <img src="uk.webp" alt="UK" />
+          <!-- <img src="uk.webp" alt="UK" /> -->
           <a href="tel:+442084004829">+44 (0)20 8400 4829</a>
         </div>
       </div>
@@ -147,10 +147,3 @@ function submitPayment() {
   // здесь может быть emit или вызов API
 }
 </script>
-
-<style scoped lang="scss">
-.big-price {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-</style>

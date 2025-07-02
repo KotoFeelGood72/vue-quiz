@@ -28,5 +28,3 @@ import { useQuizStoreRefs } from "@/stores/useQuizStore";
 
 const { steps } = useQuizStoreRefs();
 </script>
-
-<style scoped lang="scss"></style>

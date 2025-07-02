@@ -15,12 +15,12 @@
         </div>
         <div class="cars__row">
           <div class="cars_img">
-            <img src="Mercedes-E-Class-cutout-2021-520x320.png" alt="Mercedes E-Class" />
+            <!-- <img src="Mercedes-E-Class-cutout-2021-520x320.png" alt="Mercedes E-Class" /> -->
           </div>
           <div class="cars_info">
             <ul>
               <li v-for="(info, index) in infoList" :key="index">
-                <img src="black-tick.svg" alt="tick" />
+                <!-- <img src="black-tick.svg" alt="tick" /> -->
                 <p>{{ info }}</p>
               </li>
             </ul>
@@ -31,7 +31,7 @@
             <button class="btn quiz_btn" @click="selectCar">
               <div class="square_btn"></div>
               <p>Select car</p>
-              <img src="arrow-white-right.svg" alt="" />
+              <!-- <img src="arrow-white-right.svg" alt="" /> -->
             </button>
           </div>
         </div>
@@ -40,12 +40,12 @@
     <div class="back_steps back_cars">
       <div class="back_quiz_btn" @click="emit('prev')">
         <div class="square_btn"></div>
-        <img src="arrow-form-back.svg" alt="" />
+        <!-- <img src="arrow-form-back.svg" alt="" /> -->
         <p>Back to locations</p>
       </div>
       <div class="back_help">
         Need more help? Call Us
-        <img src="uk.webp" alt="UK flag" />
+        <!-- <img src="uk.webp" alt="UK flag" /> -->
         <a href="tel:+442084004829">+44 (0)20 8400 4829</a>
       </div>
     </div>
@@ -76,12 +76,3 @@ function selectCar() {
   emit("next");
 }
 </script>
-
-<style scoped lang="scss">
-.cars_price span {
-  font-weight: bold;
-  font-size: 1.2rem;
-  display: block;
-  margin: 10px 0;
-}
-</style>
