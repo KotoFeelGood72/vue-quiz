@@ -1,113 +1,77 @@
 <template>
-  <div class="quiz_steps__formsItem">
-    <h3>Your Journey summary</h3>
-    <div class="quiz_steps__formsItem__preview">
-      <div class="quiz_steps__formsItem__preview__img">
-        <img :src="previewImage" alt="Selected Car" />
+  <div class="max-w-[600px] mx-auto py-10">
+    <h3 class="text-2xl font-semibold mb-4">Your Journey Summary</h3>
+    <div class="flex items-center bg-gray-100 gap-4 mb-6">
+      <div class="max-w-1/4 px-2 py-2 rounde-md overflow-hidden">
+        <img
+          :src="selectedCar.image"
+          alt="Selected Car"
+          class="w-full h-full object-cover"
+        />
       </div>
-      <div class="quiz_steps__formsItem__preview__content">
-        <p>{{ summaryText }}</p>
-        <span>{{ userName }}, {{ userPhone }}</span>
-        <div class="quiz_steps__formsItem__preview__pickup">
-          {{ pickupLocation }}
+      <div>
+        <div>
+          <p>{{ selectedCar.name }}</p>
+          <p>{{ payments.first_name }}, {{ payments.contact_number }}</p>
         </div>
+        <div>{{ payments.where_from }}, {{ payments.where_to }}</div>
       </div>
     </div>
-    <div class="quiz_steps__formsItem__billing">
-      <div class="quiz_inputs" v-for="field in billingFields" :key="field.key">
-        <p>{{ field.label }}</p>
-        <div class="quiz_input">
-          <input type="text" v-model="billing[field.model]" />
-        </div>
-      </div>
-      <div class="quiz_inputs">
-        <p>Country</p>
-        <div class="quiz_input select_input">
-          <select v-model="billing.country">
-            <option value="">Select your country</option>
-            <option v-for="country in countries" :key="country" :value="country">
-              {{ country }}
-            </option>
-          </select>
-        </div>
-      </div>
+
+    <div class="flex flex-col gap-4">
+      <Input
+        v-model="payments.billing.company_name"
+        label="Company Name"
+        placeholder=""
+      />
+      <Input
+        v-model="payments.billing.billing_address"
+        label="Billing Address"
+        placeholder=""
+      />
+      <Input v-model="payments.billing.city" label="City" placeholder="" />
+      <Input v-model="payments.billing.postcode" label="Post/Zip Code" placeholder="" />
+
+      <Selects v-model="payments.billing.country" :options="countries" label="Country" />
+
       <div class="billing_total">
         <p>Total</p>
-        <div class="price price_ex">£{{ price.ex }}</div>
+        <!-- <div class="price price_ex">£{{ price.ex }}</div>
         <div class="price price_vat">£{{ price.vat }}</div>
-        <div class="big-price">£{{ price.total }}</div>
+        <div class="big-price">£{{ price.total }}</div> -->
       </div>
-      <div class="payment_method">
-        <!-- <img src="secured-by-stripe.jpg" alt="Stripe Secure" /> -->
+
+      <Input
+        v-model="payments.billing.card_details"
+        label="Card Details"
+        placeholder=""
+      />
+      <Input
+        v-model="payments.billing.card_name"
+        label="Cardholder Name"
+        placeholder=""
+      />
+      <div class="payment_notice">
+        Please note after you have confirmed your reservation you will be sent a full
+        booking confirmation. You can amend your journey at any time. Free cancellation
+        within 12 hours. All bookings are subject to our Terms and Conditions. Not
+        Available For Wedding Bookings.
       </div>
-      <div class="payment_action">
-        <div class="quiz_inputs">
-          <p>Card Details</p>
-          <div class="quiz_input">
-            <input type="text" v-model="payment.cardNumber" />
-          </div>
-        </div>
-        <div class="quiz_inputs">
-          <p>Cardholder Name</p>
-          <div class="quiz_input">
-            <input type="text" v-model="payment.cardName" />
-          </div>
-        </div>
-        <div class="payment_notice">
-          Please note after you have confirmed your reservation you will be sent a full
-          booking confirmation. You can amend your journey at any time. Free cancellation
-          within 12 hours. All bookings are subject to our Terms and Conditions. Not
-          Available For Wedding Bookings.
-        </div>
-      </div>
+
       <div id="card-container"></div>
-      <div class="quiz_btn" id="pay-button" @click="submitPayment">
-        <div class="square_btn"></div>
-        <p>Confirm Your Booking</p>
-        <!-- <img src="arrow-white-right.svg" alt="" /> -->
-      </div>
-      <div class="back_steps back_steps_small">
-        <div class="back_quiz_btn" @click="emit('prev')">
-          <div class="square_btn"></div>
-          <!-- <img src="arrow-form-back.svg" alt="" /> -->
-          <p>Back to cars</p>
-        </div>
-        <div class="back_help">
-          Need more help? Call Us
-          <!-- <img src="uk.webp" alt="UK" /> -->
-          <a href="tel:+442084004829">+44 (0)20 8400 4829</a>
-        </div>
-      </div>
+      <Btn name="Confirm Your Booking" @click="submitPayment" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { defineEmits } from "vue";
+import Btn from "../ui/Btn.vue";
+import { useQuizStoreRefs, useQuizStore } from "@/stores/useQuizStore";
+import Input from "../ui/Input.vue";
+import Selects from "../ui/Selects.vue";
 
-const emit = defineEmits(["prev"]);
-
-const previewImage = "choose-mercedes-benz-e-class.webp";
-const summaryText = "Mercedes E-Class, Saturday, 28 June 2025, 12:00";
-const userName = "Георгий 111";
-const userPhone = "+79615311386";
-const pickupLocation = "SSE Arena, Queens Quay, Belfast Stanford-le-Hope SS17";
-
-const billing = ref({
-  company: "",
-  address: "",
-  city: "",
-  zip: "",
-  country: "United Kingdom",
-});
-
-const billingFields = [
-  { key: "company", label: "Company Name", model: "company" },
-  { key: "address", label: "Billing Address", model: "address" },
-  { key: "city", label: "City", model: "city" },
-  { key: "zip", label: "Post/Zip Code", model: "zip" },
-];
+const { selectedCar, payments } = useQuizStoreRefs();
+const {} = useQuizStore();
 
 const countries = [
   "United Kingdom",
@@ -125,25 +89,9 @@ const countries = [
   "Japan",
   "China",
   "South Africa",
-  // можно загрузить полный список стран при необходимости
 ];
 
-const price = ref({
-  ex: "1,248.72",
-  vat: "249.74",
-  total: "1,498.46",
-});
-
-const payment = ref({
-  cardNumber: "",
-  cardName: "",
-});
-
 function submitPayment() {
-  console.log({
-    billing: billing.value,
-    payment: payment.value,
-  });
-  // здесь может быть emit или вызов API
+  // Здесь можно вызвать API или эмитировать событие
 }
 </script>

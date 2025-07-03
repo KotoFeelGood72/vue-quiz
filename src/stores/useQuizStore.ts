@@ -9,6 +9,38 @@ export const useQuizStore = defineStore("quiz", {
       { title: "Payment", num: 4 },
     ],
     currentStep: 1,
+    selectedCar: null as any,
+    bookingForOther: false,
+    airportPickup: false,
+    payments: {
+      where_from: "",
+      where_to: "",
+      hours: "",
+      date: "",
+      first_name: "",
+      last_name: "",
+      contact_number: "",
+      number_passengers: "",
+      number_of_suitcase: "",
+      flight_number: "",
+      name_board: "",
+      other: {
+        first_name: "",
+        last_name: "",
+        contact_number: "",
+        contact_email: "",
+      },
+      billing: {
+        company_name: "",
+        billing_address: "",
+        city: "",
+        postcode: "",
+        country: "",
+        card_details: "",
+        card_name: "",
+      },
+      price: "",
+    },
   }),
 
   actions: {
@@ -23,7 +55,14 @@ export const useQuizStore = defineStore("quiz", {
         this.currentStep = stepNum;
       }
     },
+
+    /** ───────────── выбор авто ───────────── */
+    selectCar(car: any /* или Car */) {
+      this.selectedCar = car; // сохраняем выбор
+      this.goToStep(3); // сразу переходим на шаг «Your Details»
+    },
   },
 });
 
+/** удобные реактивные ссылки */
 export const useQuizStoreRefs = () => storeToRefs(useQuizStore());

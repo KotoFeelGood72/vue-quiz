@@ -1,7 +1,6 @@
 <template>
-  <div class="quiz_wrapper container mx-auto">
+  <div class="quiz_wrapper container mx-auto py-6">
     <QuizPaginationList />
-    <QuizCircleProgress />
     <component :is="componentId" />
   </div>
 </template>
@@ -12,7 +11,6 @@ import TwoStep from "./steps/TwoStep.vue";
 import FreeStep from "./steps/FreeStep.vue";
 import FourStep from "./steps/FourStep.vue";
 import QuizPaginationList from "./QuizPaginationList.vue";
-import QuizCircleProgress from "./QuizCircleProgress.vue";
 
 import { useQuizStoreRefs } from "@/stores/useQuizStore";
 import { computed } from "vue";

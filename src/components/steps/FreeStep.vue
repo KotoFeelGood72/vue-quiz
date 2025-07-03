@@ -1,78 +1,101 @@
 <template>
-  <div class="quiz_steps__formsItem">
-    <div class="quiz_steps__formsItem__cars__list">
-      <div class="quiz_steps__formsItem__cars">
-        <div class="cars__head">
-          <h3>Mercedes E-Class</h3>
-          <ul>
-            <li v-for="(item, index) in features" :key="index">
-              <div class="cars_list_item__icon">
-                <img :src="item.icon" alt="" />
-              </div>
-              <p>{{ item.label }}</p>
-            </li>
-          </ul>
-        </div>
-        <div class="cars__row">
-          <div class="cars_img">
-            <!-- <img src="Mercedes-E-Class-cutout-2021-520x320.png" alt="Mercedes E-Class" /> -->
-          </div>
-          <div class="cars_info">
-            <ul>
-              <li v-for="(info, index) in infoList" :key="index">
-                <!-- <img src="black-tick.svg" alt="tick" /> -->
-                <p>{{ info }}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="cars_price">
-            <p>Your Journey Price</p>
-            <span>£1,248.72</span>
-            <button class="btn quiz_btn" @click="selectCar">
-              <div class="square_btn"></div>
-              <p>Select car</p>
-              <!-- <img src="arrow-white-right.svg" alt="" /> -->
-            </button>
-          </div>
-        </div>
-      </div>
+  <div class="max-w-[600px] mx-auto py-10">
+    <div class="quiz_steps__formsItem__head mb-6">
+      <h3 class="text-xl uppercase font-medium">BOOKING DETAILS</h3>
     </div>
-    <div class="back_steps back_cars">
-      <div class="back_quiz_btn" @click="emit('prev')">
-        <div class="square_btn"></div>
-        <!-- <img src="arrow-form-back.svg" alt="" /> -->
-        <p>Back to locations</p>
+    <div>
+      <div class="flex flex-col gap-2 mb-4">
+        <div class="flex flex-col gap-2">
+          <span class="block">Date</span>
+          <Datepicker
+            v-model="payments.date"
+            :format="'dd MMM HH:mm'"
+            :clear-button="true"
+            class="flatpickr-input"
+          />
+        </div>
+        <Input label="First Name" v-model="payments.first_name" placeholder="" />
+        <Input label="Last Name" v-model="payments.last_name" placeholder="" />
+        <Input label="Contact Number*" v-model="payments.contact_number" placeholder="" />
+        <Selects
+          label="Number of Passengers*"
+          :options="[1, 2, 3, 4, 5, 6, 7]"
+          v-model="payments.number_passengers"
+        />
+        <Selects
+          label="Number of Suitcases*"
+          :options="[1, 2, 3, 4, 5, 6, 7, 8]"
+          v-model="payments.number_of_suitcase"
+        />
       </div>
-      <div class="back_help">
-        Need more help? Call Us
-        <!-- <img src="uk.webp" alt="UK flag" /> -->
-        <a href="tel:+442084004829">+44 (0)20 8400 4829</a>
+      <div class="checkbox_group mb-6">
+        <Checkboxes v-model="bookingForOther" label="Booking for someone else?" />
+        <Checkboxes v-model="airportPickup" label="Airport Pickup?" />
       </div>
+      <transition>
+        <div v-show="bookingForOther" class="mb-6">
+          <Input
+            label="Passenger's First Name"
+            v-model="payments.other.first_name"
+            placeholder=""
+          />
+          <Input
+            label="Passenger's Last Name"
+            v-model="payments.other.last_name"
+            placeholder=""
+          />
+          <Input
+            label="Passenger's Contact Number"
+            v-model="payments.other.contact_number"
+            placeholder=""
+          />
+          <Input
+            label="Passenger's Email*"
+            v-model="payments.other.contact_email"
+            placeholder=""
+          />
+        </div>
+      </transition>
+      <transition>
+        <div v-show="airportPickup" class="mb-6 flex flex-col gap-4">
+          <Input
+            label="Flight Number"
+            v-model="payments.flight_number"
+            placeholder=""
+            notice="Don't worry. Even if your flight is delayed, we'll monitor your flight and arrive on time, Every time."
+          />
+          <Input label="Name board" v-model="payments.name_board" placeholder="" />
+        </div>
+      </transition>
+      <Btn name="Go to payment" @click="goToPayment" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits } from "vue";
+import { useQuizStore, useQuizStoreRefs } from "@/stores/useQuizStore";
+import Input from "../ui/Input.vue";
+import Selects from "../ui/Selects.vue";
+import Btn from "../ui/Btn.vue";
+import Checkboxes from "../ui/Checkboxes.vue";
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 
-const emit = defineEmits(["next", "prev"]);
+const { nextStep } = useQuizStore();
+const { payments, airportPickup, bookingForOther } = useQuizStoreRefs();
 
-const features = [
-  { icon: "icon-1-1.png", label: "4 adults" },
-  { icon: "icon-2-1.png", label: "2 suitcases" },
-  { icon: "icon-3-1.png", label: "2 carry bags" },
-  { icon: "icon-4-1.png", label: "WiFi" },
-];
-
-const infoList = [
-  "First class chauffeur",
-  "Free 60 mins airport waiting",
-  "Free 15 mins waiting for other journeys",
-  "Includes meet & greet",
-  "Free cancellation within 24 hours",
-];
-
-function selectCar() {
-  emit("next");
+function goToPayment() {
+  nextStep();
 }
 </script>
+
+<style lang="css">
+.dp__input {
+  border: 1px solid black !important;
+  height: 42px !important;
+}
+
+.dp__input_icon {
+  color: black !important;
+}
+</style>

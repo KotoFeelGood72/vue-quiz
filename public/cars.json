@@ -1,0 +1,112 @@
+[
+  {
+    "id": "business-class",
+    "name": "Business Class",
+    "category": "Sedan",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2F8U2HMVZT_mbEClass.png?alt=media&token=6de6ac10-344a-4c36-abec-dbcd6ad88604",
+    "capacity": {
+      "passengers": 3,
+      "bags": 2
+    },
+    "description": "Most Popular – Audi A6, Cadillac XTS, Mercedes-Benz E or similar.",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": ["Bluetooth", "Wifi", "USB", "AUX", "Power Outlets"],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  },
+  {
+    "id": "first-class",
+    "name": "First Class",
+    "category": "Sedan",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2FIDRAK4LA_mbSClass.png?alt=media&token=2303170c-1516-4fc8-905a-5a1472c8d8a2",
+    "capacity": {
+      "passengers": 4,
+      "bags": 2
+    },
+    "description": "Most Luxurious – Mercedes-Benz S-Class, BMW 7 Series or similar.",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": ["Bluetooth", "Wifi", "USB", "AUX", "Power Outlets"],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  },
+  {
+    "id": "comfort-van",
+    "name": "Comfort Van",
+    "category": "Shuttle Van",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2FIVTTCF9K_BKsienna.png?alt=media&token=56baeb88-440b-4a1e-9211-08e7646919d5",
+    "capacity": {
+      "passengers": 5,
+      "bags": 4
+    },
+    "description": "Most Economical – Toyota Sienna, Mercedes Metris or similar (Wheelchair-accessible on request).",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": ["Bluetooth", "Wifi", "USB", "AUX", "Power Outlets"],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  },
+  {
+    "id": "business-suv",
+    "name": "Business SUV",
+    "category": "SUV",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2FNIRRJ32L_Suburban.png?alt=media&token=0788209a-b7d5-4ed1-919c-5ff9419254b7",
+    "capacity": {
+      "passengers": 6,
+      "bags": 5
+    },
+    "description": "Most Spacious – Chevrolet Suburban, GMC Yukon XL or similar.",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": ["Bluetooth", "Wifi", "USB", "Power Outlets"],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  },
+  {
+    "id": "cadillac-escalade-premium",
+    "name": "Cadillac Escalade Premium",
+    "category": "SUV",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2FN75KSGVT_Cadillac.png?alt=media&token=4d1980c6-ab14-459d-be1b-0c7114085680",
+    "capacity": {
+      "passengers": 6,
+      "bags": 6
+    },
+    "description": "Most Luxurious & Spacious (2022+) – Cadillac Escalade ESV, Chevrolet Suburban, GMC Yukon XL or similar.",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": ["Bluetooth", "Wifi", "USB", "AUX", "Power Outlets"],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  },
+  {
+    "id": "business-sprinter-van",
+    "name": "Business Sprinter Van",
+    "category": "Shuttle Van",
+    "image": "https://firebasestorage.googleapis.com/v0/b/dooms-prod.appspot.com/o/vehicle_images%2FISTI3NPB_MBSprinter.png?alt=media&token=0f9073f1-09df-44eb-8446-82f4f6cc098f",
+    "capacity": {
+      "passengers": 15,
+      "bags": 15
+    },
+    "description": "Most Popular for Groups – Mercedes-Benz Sprinter or similar.",
+    "features": {
+      "general": ["AC", "Luggage"],
+      "multimedia": [
+        "Bluetooth",
+        "Wifi",
+        "USB",
+        "AUX",
+        "DVD Player",
+        "TV",
+        "Power Outlets"
+      ],
+      "policy": "No alcohol, food, pets, or smoking allowed",
+      "childSeats": { "rearFacing": 1, "forwardFacing": 1, "booster": 1 }
+    }
+  }
+]
